@@ -1,0 +1,12 @@
+{
+  "name": "presentations",
+  "private": true,
+  "scripts": {
+    "build": "marp --theme themes/dark.css --html --input-dir src --output dist",
+    "dev": "marp --theme themes/dark.css --html --watch src/",
+    "preview": "marp --theme themes/dark.css --html --server src/"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.1.1"
+  }
+}

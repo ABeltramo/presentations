@@ -1,0 +1,101 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build slides
+        run: npm run build
+
+      - name: Copy image assets
+        run: |
+          find src -type f ! -name "*.md" | while read f; do
+            dest="dist/${f#src/}"
+            mkdir -p "$(dirname "$dest")"
+            cp "$f" "$dest"
+          done
+
+      - name: Generate index
+        run: |
+          python3 - <<'EOF'
+          import os, pathlib, html
+
+          dist = pathlib.Path("dist")
+          decks = sorted(dist.rglob("*.html"))
+
+          items = []
+          for deck in decks:
+              rel = deck.relative_to(dist)
+              parts = list(rel.parts)
+              # Use folder path as display name, strip the filename
+              label = " / ".join(parts[:-1]) or str(rel)
+              items.append(f'<li><a href="{html.escape(str(rel))}">{html.escape(label)}</a></li>')
+
+          page = f"""<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Presentations</title>
+            <style>
+              body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                     background: #0d1117; color: #e6edf3; margin: 0; padding: 60px; }}
+              h1 {{ font-size: 2em; margin-bottom: 0.3em; }}
+              p  {{ color: #8b949e; margin-bottom: 2em; }}
+              ul {{ list-style: none; padding: 0; }}
+              li {{ margin-bottom: 12px; }}
+              a  {{ color: #58a6ff; text-decoration: none; font-size: 1.1em; }}
+              a:hover {{ text-decoration: underline; }}
+            </style>
+          </head>
+          <body>
+            <h1>Presentations</h1>
+            <p>Built from Markdown with <a href="https://marp.app/">Marp</a>.</p>
+            <ul>
+          {"".join(items)}
+            </ul>
+          </body>
+          </html>"""
+
+          (dist / "index.html").write_text(page)
+          print(f"Index written with {len(items)} deck(s)")
+          EOF
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
