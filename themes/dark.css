@@ -239,7 +239,6 @@ img {
 
 /* Caption under images */
 .caption {
-  font-size: 0.4em;
   color: var(--muted);
   margin-top: 8px;
   font-style: italic;
