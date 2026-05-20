@@ -103,6 +103,8 @@ A single API call can consist of multiple internal tool calls
 
 **Response**
 
+<style scoped>pre { font-size: 0.62em; }</style>
+
 ```json
 {
   "status": "completed",
