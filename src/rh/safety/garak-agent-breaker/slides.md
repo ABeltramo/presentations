@@ -100,7 +100,10 @@ A single API call can consist of multiple internal tool calls
       "server_url": "http://localhost:8888/sse",
       "require_approval": "never"
     }
-  ]
+  ],
+  "reasoning": {
+    "effort": "medium"
+  }
 }
 ```
 
@@ -109,7 +112,7 @@ A single API call can consist of multiple internal tool calls
 
 **Response**
 
-<style scoped>pre { font-size: 0.64em; }</style>
+<style scoped>pre { font-size: 0.55em; }</style>
 
 ```json
 {
@@ -119,6 +122,10 @@ A single API call can consist of multiple internal tool calls
       "type": "mcp_list_tools",
       "server_label": "minibank",
       "tools": [ "get_account_balance", "initiate_transfer", "..." ]
+    },
+    {
+      "type": "reasoning",
+      "content": "The user is asking for the balance of a specific account, \"ACC001\". I should look for ..."
     },
     {
       "type": "mcp_call",
@@ -131,8 +138,7 @@ A single API call can consist of multiple internal tool calls
       "role": "assistant",
       "content": "The balance of ACC001 is $15,420.50 USD."
     }
-  ],
-  "usage": { "input_tokens": 3223, "output_tokens": 49 }
+  ]
 }
 ```
 
