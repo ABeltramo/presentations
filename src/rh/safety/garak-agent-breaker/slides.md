@@ -11,7 +11,7 @@ paginate: true
 
 # Agent Breaker
 
-Automated attack and assessment of a banking AI agent using garak
+Automated attack and assessment of agents using Garak
 
 ---
 
