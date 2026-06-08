@@ -41,18 +41,38 @@ jobs:
       - name: Generate index
         run: |
           python3 - <<'EOF'
-          import os, pathlib, html
+          import pathlib, html, re
 
           dist = pathlib.Path("dist")
-          decks = sorted(dist.rglob("*.html"))
+          src  = pathlib.Path("src")
+
+          def read_date(html_path):
+              # Map dist/a/b/c/slides.html -> src/a/b/c/slides.md
+              rel = html_path.relative_to(dist)
+              md  = src / rel.with_suffix(".md")
+              if md.exists():
+                  text = md.read_text()
+                  m = re.search(r'^date:\s*(\S+)', text, re.MULTILINE)
+                  if m:
+                      return m.group(1)
+              return ""
+
+          decks = list(dist.rglob("*.html"))
+          entries = []
+          for deck in decks:
+              rel   = deck.relative_to(dist)
+              parts = list(rel.parts)
+              label = " / ".join(parts[:-1]) or str(rel)
+              date  = read_date(deck)
+              entries.append((date, str(rel), label))
+
+          # Most recent first; entries without a date go last
+          entries.sort(key=lambda e: e[0] or "0000-00-00", reverse=True)
 
           items = []
-          for deck in decks:
-              rel = deck.relative_to(dist)
-              parts = list(rel.parts)
-              # Use folder path as display name, strip the filename
-              label = " / ".join(parts[:-1]) or str(rel)
-              items.append(f'<li><a href="{html.escape(str(rel))}">{html.escape(label)}</a></li>')
+          for date, href, label in entries:
+              date_span = f' <span class="date">{html.escape(date)}</span>' if date else ""
+              items.append(f'<li><a href="{html.escape(href)}">{html.escape(label)}</a>{date_span}</li>')
 
           page = f"""<!DOCTYPE html>
           <html lang="en">
@@ -69,6 +89,7 @@ jobs:
               li {{ margin-bottom: 12px; }}
               a  {{ color: #58a6ff; text-decoration: none; font-size: 1.1em; }}
               a:hover {{ text-decoration: underline; }}
+              .date {{ color: #8b949e; font-size: 0.85em; margin-left: 0.6em; }}
             </style>
           </head>
           <body>

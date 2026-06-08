@@ -3,6 +3,7 @@ marp: true
 theme: dark
 title: Agentic Automated Red Teaming in Garak
 paginate: true
+date: 2026-06-08
 ---
 
 <!-- _class: title -->
