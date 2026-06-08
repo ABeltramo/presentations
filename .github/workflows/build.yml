@@ -72,7 +72,7 @@ jobs:
           items = []
           for date, href, label in entries:
               date_span = f' <span class="date">{html.escape(date)}</span>' if date else ""
-              items.append(f'<li><a href="{html.escape(href)}">{html.escape(label)}</a>{date_span}</li>')
+              items.append(f'<li>{date_span} - <a href="{html.escape(href)}">{html.escape(label)}</a></li>')
 
           page = f"""<!DOCTYPE html>
           <html lang="en">
