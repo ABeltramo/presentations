@@ -4,7 +4,8 @@
   "scripts": {
     "build": "marp --theme themes/dark.css --html --input-dir src --output dist",
     "dev": "marp --theme themes/dark.css --html --watch src/",
-    "preview": "marp --theme themes/dark.css --html --server src/"
+    "preview": "marp --theme themes/dark.css --html --server src/",
+    "present": "marp --theme themes/dark.css --html --server --bespoke.osc=false src/"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.1.1"
