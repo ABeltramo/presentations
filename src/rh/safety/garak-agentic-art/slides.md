@@ -56,7 +56,7 @@ and exposes the [Responses API](https://developers.openai.com/api/reference/resp
 
 ## Policy directives
 
-No authentication layer. Policies are enforced entirely through natural-language instructions embedded in tool
+Policies are enforced entirely through natural-language instructions embedded in tool
 docstrings; the server trusts the model to comply.
 
 ```python
