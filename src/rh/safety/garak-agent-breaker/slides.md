@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: dark
+theme: redhat
 title: Automated Agentic Red-Teaming with Garak
 paginate: true
 date: 2026-05-20

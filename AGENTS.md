@@ -21,7 +21,7 @@ themes/dark.css                                    # shared Marp theme
    ```yaml
    ---
    marp: true
-   theme: dark
+   theme: redhat
    title: Your Title
    paginate: true
    ---

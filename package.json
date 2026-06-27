@@ -2,10 +2,10 @@
   "name": "presentations",
   "private": true,
   "scripts": {
-    "build": "marp --theme themes/dark.css --html --input-dir src --output dist",
-    "dev": "marp --theme themes/dark.css --html --watch src/",
-    "preview": "marp --theme themes/dark.css --html --server src/",
-    "present": "marp --theme themes/dark.css --html --server --bespoke.osc=false src/"
+    "build": "marp --theme-set themes/dark.css themes/redhat.css --html --input-dir src --output dist",
+    "dev": "marp --theme-set themes/dark.css themes/redhat.css --html --watch src/",
+    "preview": "marp --theme-set themes/dark.css themes/redhat.css --html --server src/",
+    "present": "marp --theme-set themes/dark.css themes/redhat.css --html --server --bespoke.osc=false src/"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.1.1"

@@ -1,0 +1,404 @@
+/* @theme redhat */
+
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,500;0,700;1,400&family=Red+Hat+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Backgrounds — dark navy-purple matching the pptx */
+  --bg:        #0d0c26;
+  --surface:   #1a1654;
+  --surface-2: #120f3a;
+
+  /* Borders */
+  --border:        #2e2880;
+  --border-subtle: #1e1a5a;
+
+  /* Text */
+  --text:  #ffffff;
+  --muted: #e0dff8;
+  --dim:   #8a88bb;
+
+  /* Brand accents */
+  --red:    #ee0000;
+  --red-hi: #ff1629;
+  --teal:   #34bdbd;
+  --purple: #4a329c;
+  --blue:   #4a86e8;
+  --green:  #6aa84f;
+  --yellow: #f0ab00;
+
+  /* Fonts */
+  --font: 'Red Hat Display', 'Segoe UI', Arial, sans-serif;
+  --body: 'Red Hat Text', 'Segoe UI', Arial, sans-serif;
+  --mono: 'Red Hat Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+/* ── Base slide — navy-purple bg + red circle decoration top-right ──── */
+
+section {
+  background-color: var(--bg);
+  /* Red circle arc peeking in from top-right, matching pptx */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'%3E%3Ccircle cx='1240' cy='-90' r='260' fill='%231a1654'/%3E%3Ccircle cx='1240' cy='-90' r='260' fill='none' stroke='%23ee0000' stroke-width='5'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: 24px;
+  padding: 52px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Page number */
+section::after {
+  font-size: 0.5em;
+  color: var(--dim);
+}
+
+/* Thin red accent bar at the bottom */
+section::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red) 0%, var(--purple) 50%, transparent 100%);
+}
+
+/* ── Typography ──────────────────────────────────────────────────────── */
+
+h1 {
+  font-family: var(--font);
+  font-weight: 700;
+  color: var(--text);
+  font-size: 2.1em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.3em;
+}
+
+h2 {
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.5em;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+
+h3 {
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.88em;
+  margin: 0.6em 0 0.25em;
+}
+
+p {
+  font-family: var(--body);
+  color: var(--muted);
+  font-size: 0.72em;
+  line-height: 1.65;
+  margin: 0.3em 0;
+}
+
+ul, ol {
+  color: var(--muted);
+  font-size: 0.72em;
+  line-height: 1.8;
+  padding-left: 1.2em;
+  margin: 0.4em 0;
+  list-style-type: square;
+}
+
+li {
+  margin-bottom: 0.2em;
+}
+
+/* Red square bullet markers, matching pptx */
+li::marker {
+  color: var(--red);
+}
+
+strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+em {
+  color: var(--teal);
+  font-style: italic;
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+/* ── Code ────────────────────────────────────────────────────────────── */
+
+code {
+  font-family: var(--mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.86em;
+  color: var(--teal);
+}
+
+pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 12px 0 0;
+  overflow: hidden;
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.78em;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* highlight.js tokens */
+.hljs                      { color: var(--muted); }
+.hljs-keyword,
+.hljs-selector-tag         { color: var(--red-hi); }
+.hljs-string,
+.hljs-attr                 { color: var(--teal); }
+.hljs-number,
+.hljs-literal              { color: var(--blue); }
+.hljs-comment              { color: var(--dim); font-style: italic; }
+.hljs-built_in,
+.hljs-type                 { color: var(--yellow); }
+.hljs-variable,
+.hljs-name                 { color: #c9b1ff; }
+.hljs-title,
+.hljs-section              { color: #c9b1ff; font-weight: bold; }
+.hljs-symbol,
+.hljs-bullet               { color: var(--blue); }
+.hljs-addition             { color: var(--green);  background: #0a1a0a; }
+.hljs-deletion             { color: var(--red-hi); background: #1a0505; }
+
+/* ── Blockquote ──────────────────────────────────────────────────────── */
+
+blockquote {
+  border-left: 3px solid var(--red);
+  padding: 4px 0 4px 16px;
+  margin: 14px 0;
+  background: transparent;
+}
+
+blockquote p { color: var(--muted); }
+
+blockquote::before,
+blockquote::after { content: none; }
+
+/* ── Table ───────────────────────────────────────────────────────────── */
+
+table {
+  font-size: 0.65em;
+  border-collapse: collapse;
+  margin-top: 14px;
+  width: 100%;
+}
+
+th {
+  font-family: var(--font);
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  text-align: left;
+}
+
+td {
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 14px;
+}
+
+tr:nth-child(even) td {
+  background: #0f0c30;
+}
+
+/* ── Images ──────────────────────────────────────────────────────────── */
+
+img {
+  max-width: 100%;
+  max-height: 380px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: block;
+  margin: 14px auto 0;
+}
+
+/* ── Label / eyebrow chip ────────────────────────────────────────────── */
+
+.label {
+  display: inline-block;
+  font-family: var(--font);
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  background: var(--red);
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin-bottom: 0.5em;
+}
+
+/* ── Layouts ─────────────────────────────────────────────────────────── */
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 14px;
+}
+
+.columns-wide {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 20px;
+  margin-top: 14px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 16px 20px;
+}
+
+/* ── Numbered step ───────────────────────────────────────────────────── */
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2a0505;
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Caption ─────────────────────────────────────────────────────────── */
+
+.caption {
+  color: var(--dim);
+  margin-top: 8px;
+  font-size: 0.6em;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Tag pills ───────────────────────────────────────────────────────── */
+
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  font-size: 0.4em;
+  font-weight: 600;
+  font-family: var(--font);
+}
+
+.tag-red    { background: #2a0505; color: var(--red-hi); border: 1px solid var(--red); }
+.tag-teal   { background: #051a1a; color: var(--teal);   border: 1px solid var(--teal); }
+.tag-purple { background: var(--surface); color: #c9b1ff; border: 1px solid var(--purple); }
+.tag-green  { background: #071407; color: var(--green);  border: 1px solid var(--green); }
+.tag-yellow { background: #1a1200; color: var(--yellow); border: 1px solid var(--yellow); }
+
+/* ── Admonitions ─────────────────────────────────────────────────────── */
+
+.admonition {
+  border-radius: 4px;
+  padding: 10px 16px;
+  margin: 10px 0;
+  font-size: 0.68em;
+  line-height: 1.55;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--dim);
+}
+
+.admonition-title {
+  font-family: var(--font);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--dim);
+}
+
+.admonition.red    { background: #1a0505; border-left-color: var(--red); }
+.admonition.teal   { background: #051515; border-left-color: var(--teal); }
+.admonition.blue   { background: #060e20; border-left-color: var(--blue); }
+.admonition.purple { background: var(--surface); border-left-color: var(--purple); }
+.admonition.yellow { background: #1a1200; border-left-color: var(--yellow); }
+.admonition.green  { background: #071407; border-left-color: var(--green); }
+
+.admonition.red    .admonition-title { color: var(--red); }
+.admonition.teal   .admonition-title { color: var(--teal); }
+.admonition.blue   .admonition-title { color: var(--blue); }
+.admonition.purple .admonition-title { color: #c9b1ff; }
+.admonition.yellow .admonition-title { color: var(--yellow); }
+.admonition.green  .admonition-title { color: var(--green); }
+
+/* ── Title slide ─────────────────────────────────────────────────────── */
+
+section.title {
+  justify-content: center;
+  /* Larger circle + a second smaller one for the title slide */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'%3E%3Ccircle cx='1240' cy='-90' r='300' fill='%231a1654'/%3E%3Ccircle cx='1240' cy='-90' r='300' fill='none' stroke='%23ee0000' stroke-width='5'/%3E%3Ccircle cx='1240' cy='-90' r='240' fill='none' stroke='%234a329c' stroke-width='1' stroke-dasharray='4 6'/%3E%3C/svg%3E");
+}
+
+section.title h1 {
+  font-size: 2.8em;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 0.15em;
+}
+
+section.title p {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+section.title .label {
+  background: var(--red);
+  color: var(--text);
+  font-size: 0.45em;
+  margin-bottom: 0.8em;
+}

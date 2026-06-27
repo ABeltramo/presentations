@@ -10,7 +10,7 @@ Slides written in Markdown, automatically built with [Marp](https://marp.app/) a
 ```markdown
 ---
 marp: true
-theme: dark
+theme: redhat
 title: Your Presentation Title
 paginate: true
 ---
@@ -25,7 +25,7 @@ paginate: true
 ```markdown
 ---
 marp: true
-theme: dark
+theme: redhat
 title: My Talk
 paginate: true
 ---
