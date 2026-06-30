@@ -226,9 +226,37 @@ Both modes support internal OpenShift-hosted models and external OpenAI-compatib
 
 ## We iterated on the detector stack
 
-We didn't get it right in one shot. We ran the same ART pipeline after each configuration change to measure impact.
+We ran the same ART pipeline after each configuration change to measure impact.
 
-<div style="margin: 30px 0">
+
+<div class="columns">
+<div>
+
+<div class="step"><div class="step-num">1</div><div>
+
+**Prompt Injection detector** — a lightweight and fast guardrail that catches most SPO variants.
+
+</div></div>
+
+</div>
+<div>
+
+![Light guardrails](./img/ART-results-light-guardrails.png)
+
+</div>
+</div>
+
+---
+
+<span class="label">NeMo Guardrails</span>
+
+## We iterated on the detector stack
+
+We ran the same ART pipeline after each configuration change to measure impact.
+
+<div class="columns">
+<div>
+
 <div class="step"><div class="step-num">1</div><div>
 
 **Prompt Injection detector** — a lightweight and fast guardrail that catches most SPO variants.
@@ -244,27 +272,11 @@ We didn't get it right in one shot. We ran the same ART pipeline after each conf
 **HAP + Injection LLM + Language detector** — blocked non-English inputs, closing the Translation attack surface.
 
 </div></div>
-</div>
-
----
-
-<span class="label">Results</span>
-
-## After guardrails
-
-<div class="columns">
-<div>
-
-![Light guardrails](./img/ART-results-light-guardrails.png)
-
-<span class="caption">Prompt injection only</span>
 
 </div>
 <div>
 
 ![Heavy guardrails](./img/ART-results-heavy-guardrail.png)
-
-<span class="caption">HAP + prompt injection + language detector</span>
 
 </div>
 </div>
@@ -309,9 +321,6 @@ or follow malicious instructions injected through a document they retrieve.
 We've built an agentic red teaming harness in Garak, tested against a realistic MCP-based banking agent with tools for
 account lookups, fund transfers, and sanctions checks.
 
-The same SPO and Translation attacks that work on a raw model also work on an agent, and the outcome is an action rather
-than a word.
-
 <div class="card">
 
 Full deep-dive: **[Automated Red Teaming for Agents →](../garak-agentic-art/slides.md)**
@@ -319,41 +328,6 @@ Full deep-dive: **[Automated Red Teaming for Agents →](../garak-agentic-art/sl
 </div>
 
 Attack strategies coming to the Responses API generator in **RHOAI 3.5**.
-
----
-
-<span class="label">Future Work</span>
-
-## From policy to production
-
-Each step in this pipeline currently requires specialist knowledge. The goal is to automate the handoffs.
-
-<!-- Placeholder: end-to-end pipeline diagram (Policy PDF → Risk mapping → ART run → Guardrail config → Deploy → Evidence report) -->
-
-<div class="columns">
-<div>
-
-**Today**
-
-1. Read and interpret policy docs — days
-2. Map risks to probe categories — weeks
-3. Configure red teaming — days per tool
-4. Select and write guardrail configs — days
-5. Deploy — manual infrastructure work
-
-</div>
-<div>
-
-**What we're building**
-
-- Ingest unstructured policy (PDF, DOCX, MD)
-- Auto-extract and structure risks
-- Drive ART from extracted risks directly
-- Recommend guardrail configs from results
-- Generate auditor-ready evidence throughout
-
-</div>
-</div>
 
 ---
 
