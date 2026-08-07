@@ -55,6 +55,11 @@ jobs:
                   m = re.search(r'^date:\s*(\S+)', text, re.MULTILINE)
                   if m:
                       return m.group(1)
+              else:
+                  # Standalone HTML (no .md source): read a <meta name="date"> tag
+                  m = re.search(r'<meta\s+name=["\']date["\']\s+content=["\']([^"\']+)["\']', html_path.read_text())
+                  if m:
+                      return m.group(1)
               return ""
 
           decks = list(dist.rglob("*.html"))
