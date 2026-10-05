@@ -81,7 +81,79 @@ npm run build
 
 ## Theme
 
-The shared theme lives in `themes/dark.css`. It uses a dark GitHub-style palette. To customise per-deck, add `style` blocks directly in your Markdown:
+The repository includes three themes:
+
+| Theme | File | Style |
+| --- | --- | --- |
+| `dark` | `themes/dark.css` | Dark GitHub-style palette |
+| `redhat` | `themes/redhat.css` | Navy-purple backgrounds and red accents |
+| `asago` | `themes/asago.css` | Navy backgrounds with blue and teal accents |
+
+All local commands and the CI build support these themes.
+
+### asago
+
+The asago logo appears in the top-right corner of every slide.
+The CSS embeds a lossless WebP copy of `themes/asago-main-logo-dark.png` for local previews and GitHub Pages.
+
+The asago theme uses these colors from the supplied screenshot:
+
+| Role | Color |
+| --- | --- |
+| Slide background | `#020617` |
+| Card background | `#0D1627` |
+| Teal card background | `#071923` |
+| Border | `#1E293B` |
+| Heading text | `#F8FAFC` |
+| Body text | `#94A3B8` |
+| Blue accent | `#2D7FF9` |
+| Teal accent | `#0DD4A0` |
+
+Set `theme: asago` in the front matter:
+
+```markdown
+---
+marp: true
+theme: asago
+title: My asago Presentation
+paginate: true
+footer: asago — AI Safety And Governance Orchestration
+---
+
+# Pipeline Architecture *Key Concerns*
+
+<p class="subtitle">What are your hard deployment requirements?</p>
+
+<div class="columns">
+<div class="card">
+
+<span class="label">Hard requirements</span>
+
+### No Deployment Assumptions
+
+- Support multiple deployment environments.
+
+</div>
+<div class="card teal">
+
+<span class="label">Decisions needed</span>
+
+### Key Discussion Points
+
+- Define community requirements.
+
+</div>
+</div>
+```
+
+The theme displays italic text in slide headings as a teal accent without italics.
+The `title` class centers a title slide.
+The footer is optional.
+Red, yellow, and purple supplement the screenshot palette for status messages and syntax tokens.
+
+### Per-deck overrides
+
+Add a `<style>` block to your Markdown:
 
 ```markdown
 <style>

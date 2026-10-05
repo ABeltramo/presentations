@@ -1,0 +1,577 @@
+/* @theme asago */
+
+:root {
+  /* Colors from the supplied asago screenshot. */
+  --bg: #020617;
+  --surface: #0d1627;
+  --surface-teal: #071923;
+  --border: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --dim: #3a5580;
+  --blue: #2d7ff9;
+  --teal: #0dd4a0;
+  --blue-tint: #152642;
+  --teal-tint: #0d2e32;
+
+  /* Supplemental colors for status messages and syntax tokens. */
+  --green: var(--teal);
+  --red: #fb7185;
+  --yellow: #fbbf24;
+  --purple: #a78bfa;
+  --red-tint: #291322;
+  --yellow-tint: #241e16;
+  --purple-tint: #1c1732;
+
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --mono: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+}
+
+/* Base slide */
+section {
+  background: var(--bg);
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 28px;
+  padding: 96px 78px 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Logo source: themes/asago-main-logo-dark.png (lossless WebP). */
+section::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  width: 200px;
+  height: 80px;
+  background: url("data:image/webp;base64,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") center / contain no-repeat;
+  pointer-events: none;
+}
+
+section::after {
+  color: var(--muted);
+  font-size: 0.5em;
+  bottom: 24px;
+  right: 32px;
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  left: 78px;
+  right: 248px;
+  color: var(--muted);
+  font-size: 0.45em;
+}
+
+footer {
+  position: absolute;
+  bottom: 26px;
+  left: 78px;
+  right: 78px;
+  color: var(--dim);
+  font-size: 0.5em;
+  text-align: center;
+}
+
+footer::before {
+  content: "";
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  height: 1px;
+  margin: 0 auto 14px;
+  background: var(--border);
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  color: var(--blue);
+  font-size: 1.85em;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0 0 0.35em;
+}
+
+h2 {
+  color: var(--blue);
+  font-size: 1.45em;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0 0 0.5em;
+}
+
+h3 {
+  color: var(--text);
+  font-size: 0.95em;
+  margin: 0.6em 0 0.3em;
+}
+
+p {
+  font-size: 0.82em;
+  line-height: 1.6;
+  margin: 0.3em 0;
+}
+
+ul, ol {
+  font-size: 0.82em;
+  line-height: 1.7;
+  padding-left: 1.4em;
+  margin: 0.4em 0;
+}
+
+li {
+  padding-left: 0.3em;
+  margin-bottom: 0.6em;
+}
+
+li::marker {
+  color: var(--muted);
+}
+
+strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+em, a, .accent {
+  color: var(--teal);
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 em, h2 em {
+  font-style: normal;
+}
+
+.subtitle {
+  color: var(--text);
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+  margin: 0.25em 0 0.6em;
+}
+
+/* Code */
+code {
+  font-family: var(--mono);
+  color: var(--teal);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.86em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 12px 0 0;
+  overflow: hidden;
+}
+
+pre code {
+  color: var(--text);
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.78em;
+  line-height: 1.7;
+}
+
+.hljs { color: var(--text); }
+.hljs-keyword,
+.hljs-selector-tag { color: var(--blue); }
+.hljs-string,
+.hljs-attr { color: var(--teal); }
+.hljs-number,
+.hljs-literal { color: var(--yellow); }
+.hljs-comment { color: var(--muted); font-style: italic; }
+.hljs-built_in,
+.hljs-type { color: var(--blue); }
+.hljs-variable,
+.hljs-name { color: var(--purple); }
+.hljs-title,
+.hljs-section { color: var(--teal); font-weight: bold; }
+.hljs-symbol,
+.hljs-bullet { color: var(--blue); }
+.hljs-addition { color: var(--teal); background: var(--teal-tint); }
+.hljs-deletion { color: var(--red); background: var(--red-tint); }
+
+/* Quotes, tables, and images */
+blockquote {
+  border-left: 3px solid var(--teal);
+  padding: 4px 0 4px 16px;
+  margin: 14px 0;
+  background: transparent;
+}
+
+blockquote p {
+  color: var(--text);
+}
+
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+
+table {
+  font-size: 0.72em;
+  border-collapse: collapse;
+  margin-top: 14px;
+  width: 100%;
+}
+
+th {
+  color: var(--text);
+  background: var(--blue-tint);
+  text-align: left;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+}
+
+td {
+  background: var(--surface);
+}
+
+tr:nth-child(even) td {
+  background: var(--surface-teal);
+}
+
+img {
+  max-width: 100%;
+  max-height: 380px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: block;
+  margin: 14px auto 0;
+}
+
+.caption {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 0.6em;
+  text-align: center;
+}
+
+/* Two-column layouts and cards */
+.columns, .columns-wide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
+  margin-top: 20px;
+}
+
+.columns-wide {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.columns > *, .columns-wide > * {
+  min-width: 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.card.blue {
+  border-color: var(--blue);
+}
+
+.card.teal, .card.green {
+  background: var(--surface-teal);
+  border-color: var(--teal);
+}
+
+.card h2 {
+  color: var(--text);
+  font-size: 1em;
+  text-align: left;
+}
+
+.card h3 {
+  margin-top: 0.6em;
+}
+
+/* Labels */
+.label, h4 {
+  display: inline-block;
+  align-self: flex-start;
+  color: var(--blue);
+  background: var(--blue-tint);
+  border-radius: 5px;
+  padding: 6px 16px;
+  margin: 0 0 0.5em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.label.teal, .label.green,
+.card.teal .label, .card.green .label,
+section.teal > h4 {
+  color: var(--teal);
+  background: var(--teal-tint);
+}
+
+/* Numbered steps */
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal-tint);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tags and status messages */
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tag-blue { background: var(--blue-tint); color: var(--blue); }
+.tag-teal, .tag-green { background: var(--teal-tint); color: var(--teal); }
+.tag-red { background: var(--red-tint); color: var(--red); }
+.tag-yellow { background: var(--yellow-tint); color: var(--yellow); }
+.tag-purple { background: var(--purple-tint); color: var(--purple); }
+
+.admonition {
+  --admonition-accent: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--admonition-accent);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 10px 0;
+  color: var(--text);
+  font-size: 0.68em;
+  line-height: 1.55;
+}
+
+.admonition-title {
+  display: block;
+  color: var(--admonition-accent);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.admonition.blue { --admonition-accent: var(--blue); background: var(--blue-tint); }
+.admonition.teal, .admonition.green { --admonition-accent: var(--teal); background: var(--teal-tint); }
+.admonition.red { --admonition-accent: var(--red); background: var(--red-tint); }
+.admonition.yellow { --admonition-accent: var(--yellow); background: var(--yellow-tint); }
+.admonition.purple { --admonition-accent: var(--purple); background: var(--purple-tint); }
+
+/* Title slide */
+section.title {
+  justify-content: center;
+  align-items: center;
+}
+
+section.title h1 {
+  font-size: 2.4em;
+  letter-spacing: -0.03em;
+}
+
+section.title p {
+  font-size: 0.85em;
+  text-align: center;
+}
+
+section.title > p + p {
+  margin-top: 24px;
+  color: var(--muted);
+}
+
+section.title > .label,
+section.title > h4 {
+  align-self: center;
+  margin-bottom: 0.8em;
+}
+
+/* Markdown components selected with the Marp _class directive.
+ * Level-four headings display labels.
+ * api-diagram: A blockquote contains a caller paragraph, a server paragraph, and an endpoint list.
+ * cards: A top-level list displays two columns of cards.
+ * callout: Blockquotes display status messages.
+ * sources: The last paragraph displays source references.
+ * credits: The last paragraph displays contributor credits.
+ */
+
+/* API diagram */
+section.api-diagram > blockquote {
+  display: grid;
+  grid-template-columns: 0.9fr 64px 2.6fr;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  border: none;
+  padding: 0;
+  margin: 24px 0 18px;
+}
+
+section.api-diagram > blockquote::before {
+  content: "→";
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: var(--teal);
+  font-size: 1.7em;
+  text-align: center;
+}
+
+section.api-diagram > blockquote::after {
+  content: "";
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: stretch;
+  z-index: -1;
+  background: var(--surface);
+  border: 1px solid var(--blue);
+  border-radius: 16px;
+}
+
+section.api-diagram > blockquote > p:first-of-type {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+section.api-diagram > blockquote > p:first-of-type strong {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 1.2em;
+}
+
+section.api-diagram > blockquote > p:nth-of-type(2) {
+  grid-column: 3;
+  grid-row: 1;
+  padding: 24px 24px 16px;
+  margin: 0;
+  font-size: 1em;
+}
+
+section.api-diagram > blockquote > ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  grid-column: 3;
+  grid-row: 2;
+  padding: 0 24px 24px;
+  margin: 0;
+  font-size: 0.72em;
+  line-height: 1.6;
+  list-style: none;
+}
+
+section.api-diagram > blockquote > ul > li {
+  padding: 14px 8px;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--blue-tint);
+  color: var(--text);
+  text-align: center;
+}
+
+/* Two-column cards */
+section.cards > ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding: 0;
+  margin: 20px 0 0;
+  font-size: 1em;
+  line-height: normal;
+  list-style: none;
+}
+
+section.cards > ul > li {
+  min-width: 0;
+  padding: 22px;
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--blue);
+  border-radius: 16px;
+}
+
+section.cards > ul > li:nth-child(odd) {
+  background: var(--surface-teal);
+  border-color: var(--teal);
+}
+
+section.cards > ul > li > h3 {
+  margin-top: 0;
+}
+
+/* Callouts and reference text */
+section.callout > blockquote {
+  background: var(--teal-tint);
+  border-left: 3px solid var(--teal);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 20px 0 10px;
+  font-size: 0.75em;
+}
+
+section.callout > blockquote p {
+  font-size: 1em;
+  line-height: 1.55;
+}
+
+section.sources > p:last-of-type {
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 0.6em;
+}
+
+section.credits > p:last-of-type {
+  margin-top: 22px;
+  font-size: 0.65em;
+  line-height: 1.7;
+}
