@@ -575,3 +575,148 @@ section.credits > p:last-of-type {
   font-size: 0.65em;
   line-height: 1.7;
 }
+
+/* Image layout.
+ * A centered image with an optional .caption paragraph.
+ * The base img rule keeps the aspect ratio with max-height.
+ */
+section.image {
+  justify-content: center;
+}
+
+section.image img {
+  margin-top: 18px;
+}
+
+section.image > .caption {
+  margin-top: 10px;
+}
+
+/* Pipeline diagram.
+ * A horizontal flow of stages separated by arrows.
+ * Each .stage is a titled card.
+ */
+section.pipeline .pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  margin: 22px 0 16px;
+}
+
+section.pipeline .pipeline .stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 12px;
+  margin: 0;
+}
+
+section.pipeline .pipeline .stage > :first-child {
+  margin: 0;
+  font-size: 0.6em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  text-align: center;
+}
+
+section.pipeline .pipeline .stage ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0.62em;
+  line-height: 1.6;
+  text-align: center;
+  display: grid;
+  gap: 4px;
+}
+
+section.pipeline .pipeline .stage ul li {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--blue-tint);
+  padding: 4px 6px;
+}
+
+section.pipeline .pipeline .arrow {
+  align-self: center;
+  color: var(--teal);
+  font-size: 1.3em;
+}
+
+/* Stats layout.
+ * A top-level list displays large statistic cards.
+ * Each item: a strong element (the number) plus plain text (the label).
+ */
+section.stats > p:last-of-type {
+  margin-top: 0;
+}
+
+section.stats > ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0;
+  margin: 12px 0 0;
+  list-style: none;
+}
+
+section.stats > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 12px;
+  text-align: center;
+}
+
+section.stats > ul > li > p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+section.stats > ul > li > p > strong {
+  font-size: 3.6em;
+  font-weight: 800;
+  line-height: 1;
+}
+
+section.stats > ul > li {
+  font-size: 0.7em;
+  color: var(--muted);
+}
+
+/* Compact layout applies only to slides with the compact class. */
+section.compact {
+  font-size: 24px;
+}
+section.compact > p {
+  line-height: 1.45;
+}
+section.compact > ul {
+  line-height: 1.5;
+}
+section.compact li {
+  margin-bottom: 0.35em;
+}
+section.compact th,
+section.compact td {
+  padding: 7px 14px;
+}
+section.compact .pipeline {
+  margin: 12px 0 10px;
+}
+section.compact > .caption {
+  margin-top: 4px;
+  padding-top: 0;
+}
