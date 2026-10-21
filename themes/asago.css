@@ -565,7 +565,7 @@ section.callout > blockquote p {
 }
 
 section.sources > p:last-of-type {
-  margin-top: auto;
+  margin-bottom: 26px;
   padding-top: 12px;
   font-size: 0.6em;
 }

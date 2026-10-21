@@ -79,7 +79,9 @@ Track work across Asago repositories in one place. The board is public: anyone c
 
 [![Project board](img/asago-project-board.png)](https://github.com/orgs/asago-ai/projects/1)
 
-<p class="caption">github.com/orgs/asago-ai/projects/1 — click the screenshot to open the live board</p>
+<p class="caption">
+<a href="https://github.com/orgs/asago-ai/projects/1">https://github.com/orgs/asago-ai/projects/1</a>
+</p>
 
 ---
 
@@ -98,9 +100,8 @@ We expanded the dataset from **1,519 to 2,211 risks** across **27 policy documen
 <p class="caption">Reported scores before and after the ground-truth update, not a controlled comparison of mapper versions.</p>
 
 - Dataset generation used **2-of-3 model agreement**, symmetric validation, and an LLM judge.
-- PR #108 reports higher F1 for all 27 documents and **637 fewer false positives** under the updated ground truth.
-
-> **Follow-up fix:** [PR #121](https://github.com/asago-ai/asago-policy-mapper/pull/121) restored evidence quotes and added missing risk names in 271 risks across 23 files. The total remains **2,211 risks**.
+- PR [#108](https://github.com/asago-ai/asago-policy-mapper/pull/108) reports higher F1 for all 27 documents and **637 fewer false positives** under the updated ground truth.
+- Follow-up fix in [PR #121](https://github.com/asago-ai/asago-policy-mapper/pull/121) restored evidence quotes and added missing risk names in 271 risks across 23 files.
 
 ---
 
