@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="100" viewBox="0 0 1120 100" role="img" aria-label="Intent Service times Scenario flows into IPIProbe, then Attempt">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#78adff"/></marker></defs>
+<style>text{font-family:"Red Hat Text","Segoe UI",Arial,sans-serif;font-size:22px;text-anchor:middle;dominant-baseline:middle}rect{fill:#15122f;stroke-width:2}path{stroke:#78adff;stroke-width:2}</style>
+<rect x="10" y="18" width="230" height="64" rx="10" stroke="#78adff"/>
+<text x="125" y="50" fill="#78adff">Intent Service</text>
+<text x="275" y="50" fill="#aaa8cc" style="font-size:30px">×</text>
+<rect x="310" y="18" width="220" height="64" rx="10" stroke="#c8adff"/>
+<text x="420" y="50" fill="#c8adff">Scenario</text>
+<path d="M530,50 H625" marker-end="url(#arrow)"/>
+<rect x="635" y="18" width="200" height="64" rx="10" stroke="#78adff"/>
+<text x="735" y="50" fill="#78adff">IPIProbe</text>
+<path d="M835,50 H905" marker-end="url(#arrow)"/>
+<rect x="915" y="18" width="195" height="64" rx="10" stroke="#78adff"/>
+<text x="1012" y="50" fill="#78adff">Attempt</text>
+</svg>

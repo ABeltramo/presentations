@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" role="img" aria-labelledby="title"><title id="title">Generator, Injector, and Environment emit distinct trace events for the same execution.</title><defs>
+<marker id="blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#78adff"/></marker>
+<marker id="red" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#ff7e8b"/></marker>
+<marker id="green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#6ed6ac"/></marker>
+<marker id="purple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#c8adff"/></marker>
+<marker id="amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#ffc15a"/></marker>
+<marker id="muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#aaa8cc"/></marker>
+<marker id="white" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#f5f3ff"/></marker>
+</defs><style>text{font-family:"Red Hat Text","Segoe UI",Arial,sans-serif}.mono{font-family:"Red Hat Mono",Menlo,monospace}</style>
+<rect x="20" y="25" width="320" height="72" rx="12" fill="#15122f" stroke="#78adff" stroke-width="2"/>
+<text x="38" y="58" fill="#78adff" font-size="22" text-anchor="start">Generator</text>
+<path d="M180 97 V170" fill="none" stroke="#78adff" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="20" y="170" width="320" height="155" rx="12" fill="#15122f" stroke="#78adff" stroke-width="2"/>
+<text x="38" y="208" fill="#78adff" font-size="19" text-anchor="start" class="mono">tool_request</text>
+<text x="38" y="252" fill="#f5f3ff" font-size="18" text-anchor="start" class="mono">send_email(…)</text>
+<text x="38" y="294" fill="#aaa8cc" font-size="17" text-anchor="start" class="mono">tool_call_id: c7</text>
+<rect x="400" y="25" width="320" height="72" rx="12" fill="#15122f" stroke="#ff7e8b" stroke-width="2"/>
+<text x="418" y="58" fill="#ff7e8b" font-size="22" text-anchor="start">Injector</text>
+<path d="M560 97 V170" fill="none" stroke="#ff7e8b" stroke-width="2" marker-end="url(#red)"/>
+<rect x="400" y="170" width="320" height="155" rx="12" fill="#15122f" stroke="#ff7e8b" stroke-width="2"/>
+<text x="418" y="208" fill="#ff7e8b" font-size="19" text-anchor="start" class="mono">injection_delivery</text>
+<text x="418" y="252" fill="#f5f3ff" font-size="18" text-anchor="start" class="mono">weather(city=&quot;New York&quot;)</text>
+<text x="418" y="294" fill="#aaa8cc" font-size="17" text-anchor="start" class="mono">tool_call_id: c6</text>
+<rect x="780" y="25" width="320" height="72" rx="12" fill="#15122f" stroke="#c8adff" stroke-width="2"/>
+<text x="798" y="58" fill="#c8adff" font-size="22" text-anchor="start">Environment</text>
+<path d="M940 97 V170" fill="none" stroke="#c8adff" stroke-width="2" marker-end="url(#purple)"/>
+<rect x="780" y="170" width="320" height="155" rx="12" fill="#15122f" stroke="#c8adff" stroke-width="2"/>
+<text x="798" y="208" fill="#c8adff" font-size="19" text-anchor="start" class="mono">operation_blocked</text>
+<text x="798" y="252" fill="#f5f3ff" font-size="18" text-anchor="start" class="mono">outbound email</text>
+<text x="798" y="294" fill="#aaa8cc" font-size="17" text-anchor="start" class="mono">No completed effect</text>
+<rect x="20" y="375" width="1080" height="52" rx="12" fill="#15122f" stroke="#aaa8cc" stroke-width="2"/>
+<text x="560" y="409" fill="#f5f3ff" font-size="21" text-anchor="middle" class="mono">attempt_id  →  execution_id  →  tool_call_id</text>
+</svg>

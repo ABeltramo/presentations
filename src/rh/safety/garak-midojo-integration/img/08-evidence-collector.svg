@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" role="img" aria-labelledby="title"><title id="title">The Evidence Collector correlates traces and freezes an evidence snapshot. A Detector receives the Attempt and the snapshot.</title><defs>
+<marker id="blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#78adff"/></marker>
+<marker id="red" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#ff7e8b"/></marker>
+<marker id="green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#6ed6ac"/></marker>
+<marker id="purple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#c8adff"/></marker>
+<marker id="amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#ffc15a"/></marker>
+<marker id="muted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#aaa8cc"/></marker>
+<marker id="white" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="#f5f3ff"/></marker>
+</defs><style>text{font-family:"Red Hat Text","Segoe UI",Arial,sans-serif}.mono{font-family:"Red Hat Mono",Menlo,monospace}</style>
+<rect x="20" y="35" width="230" height="72" rx="12" fill="#15122f" stroke="#78adff" stroke-width="2"/>
+<text x="38" y="68" fill="#78adff" font-size="22" text-anchor="start">Generator</text>
+<path d="M250 71 H305 V174 H395" fill="none" stroke="#78adff" stroke-width="2" marker-end="url(#blue)"/>
+<rect x="20" y="145" width="230" height="72" rx="12" fill="#15122f" stroke="#ff7e8b" stroke-width="2"/>
+<text x="38" y="178" fill="#ff7e8b" font-size="22" text-anchor="start">Injector</text>
+<path d="M250 181 H305 V174 H395" fill="none" stroke="#ff7e8b" stroke-width="2" marker-end="url(#red)"/>
+<rect x="20" y="255" width="230" height="72" rx="12" fill="#15122f" stroke="#c8adff" stroke-width="2"/>
+<text x="38" y="288" fill="#c8adff" font-size="22" text-anchor="start">Environment</text>
+<path d="M250 291 H305 V174 H395" fill="none" stroke="#c8adff" stroke-width="2" marker-end="url(#purple)"/>
+<rect x="395" y="120" width="285" height="110" rx="12" fill="#15122f" stroke="#ffc15a" stroke-width="2"/>
+<text x="413" y="153" fill="#ffc15a" font-size="22" text-anchor="start">Evidence Collector</text>
+<text x="413" y="184" fill="#f5f3ff" font-size="18" text-anchor="start">Correlate · finalize</text>
+<path d="M680 174 H795" fill="none" stroke="#ffc15a" stroke-width="2" marker-end="url(#amber)"/>
+<rect x="795" y="90" width="305" height="148" rx="12" fill="#15122f" stroke="#ffc15a" stroke-width="2"/>
+<text x="813" y="123" fill="#ffc15a" font-size="22" text-anchor="start">Immutable snapshot</text>
+<text x="813" y="154" fill="#f5f3ff" font-size="18" text-anchor="start">Execution ID + events</text>
+<text x="813" y="181" fill="#f5f3ff" font-size="18" text-anchor="start">Sources + coverage</text>
+<rect x="395" y="290" width="285" height="72" rx="12" fill="#15122f" stroke="#78adff" stroke-width="2"/>
+<text x="413" y="323" fill="#78adff" font-size="22" text-anchor="start">Attempt</text>
+<rect x="795" y="290" width="305" height="72" rx="12" fill="#15122f" stroke="#78adff" stroke-width="2"/>
+<text x="813" y="323" fill="#78adff" font-size="22" text-anchor="start">Detector</text>
+<path d="M680 326 H795" fill="none" stroke="#78adff" stroke-width="2" marker-end="url(#blue)"/>
+<path d="M948 238 V290" fill="none" stroke="#ffc15a" stroke-width="2" marker-end="url(#amber)"/>
+<text x="560" y="422" fill="#ffc15a" font-size="21" text-anchor="middle">Finalize evidence  →  Release resources  →  Detect</text>
+</svg>
