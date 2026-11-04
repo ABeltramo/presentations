@@ -110,6 +110,37 @@ jobs:
           print(f"Index written with {len(items)} deck(s)")
           EOF
 
+      - name: Create legacy URL redirects
+        run: |
+          python3 - <<'EOF'
+          from pathlib import Path
+
+          redirects = {
+              "rh/asago/tech-meeting-07-10/slides.html": "../tech-meeting-26-10-07/slides.html",
+              "rh/asago/tech-meeting-21-10/slides.html": "../tech-meeting-26-10-21/slides.html",
+              "rh/asago/tech-meeting-04-11/slides.html": "../tech-meeting-26-11-04/slides.html",
+          }
+
+          for old_path, target in redirects.items():
+              page = Path("dist") / old_path
+              page.parent.mkdir(parents=True, exist_ok=True)
+              page.write_text("\n".join([
+                  "<!doctype html>",
+                  '<html lang="en">',
+                  "<head>",
+                  '  <meta charset="utf-8">',
+                  f'  <meta http-equiv="refresh" content="0; url={target}">',
+                  f'  <link rel="canonical" href="{target}">',
+                  "  <title>Presentation moved</title>",
+                  "</head>",
+                  "<body>",
+                  f'  <p>This presentation moved. <a href="{target}">Open the updated presentation</a>.</p>',
+                  "</body>",
+                  "</html>",
+              ]) + "\n")
+              print(f"Redirect created: {old_path} -> {target}")
+          EOF
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3

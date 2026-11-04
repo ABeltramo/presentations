@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="340" viewBox="0 0 1280 340" role="img" aria-labelledby="title desc">
+  <title id="title">Asago end-to-end demo workflow</title>
+  <desc id="desc">A policy passes through policy-mapper, scenario-generator, artifact-generator, Garak, and guardrail-recommender.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#0dd4a0" />
+    </marker>
+    <style>
+      .label { font-family: "SF Mono", "Fira Code", Menlo, monospace; }
+      .text { font-family: "Red Hat Text", "Segoe UI", Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <g fill="none" stroke="#0dd4a0" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M212 190h18" />
+    <path d="M420 190h18" />
+    <path d="M628 190h18" />
+    <path d="M836 190h18" />
+    <path d="M1044 190h18" />
+  </g>
+
+  <g>
+    <rect x="32" y="96" width="176" height="188" rx="16" fill="#0d1627" stroke="#2d7ff9" stroke-width="2" />
+    <rect x="50" y="114" width="36" height="4" rx="2" fill="#2d7ff9" />
+    <text class="label" x="50" y="143" fill="#2d7ff9" font-size="12" letter-spacing="1.2">STEP 01</text>
+    <text class="label" x="120" y="185" fill="#f8fafc" font-size="21" text-anchor="middle">policy</text>
+    <text class="text" x="120" y="232" fill="#94a3b8" font-size="14" text-anchor="middle">source document</text>
+  </g>
+
+  <g>
+    <rect x="240" y="96" width="176" height="188" rx="16" fill="#0d1627" stroke="#1e293b" stroke-width="2" />
+    <rect x="258" y="114" width="36" height="4" rx="2" fill="#0dd4a0" />
+    <text class="label" x="258" y="143" fill="#0dd4a0" font-size="12" letter-spacing="1.2">STEP 02</text>
+    <text class="label" x="328" y="174" fill="#f8fafc" font-size="17" text-anchor="middle">
+      <tspan x="328">policy-</tspan><tspan x="328" dy="23">mapper</tspan>
+    </text>
+    <text class="text" x="328" y="232" fill="#94a3b8" font-size="14" text-anchor="middle">extract risks</text>
+  </g>
+
+  <g>
+    <rect x="448" y="96" width="176" height="188" rx="16" fill="#0d1627" stroke="#1e293b" stroke-width="2" />
+    <rect x="466" y="114" width="36" height="4" rx="2" fill="#0dd4a0" />
+    <text class="label" x="466" y="143" fill="#0dd4a0" font-size="12" letter-spacing="1.2">STEP 03</text>
+    <text class="label" x="536" y="174" fill="#f8fafc" font-size="16" text-anchor="middle">
+      <tspan x="536">scenario-</tspan><tspan x="536" dy="23">generator</tspan>
+    </text>
+    <text class="text" x="536" y="232" fill="#94a3b8" font-size="14" text-anchor="middle">build scenarios</text>
+  </g>
+
+  <g>
+    <rect x="656" y="96" width="176" height="188" rx="16" fill="#0d1627" stroke="#1e293b" stroke-width="2" />
+    <rect x="674" y="114" width="36" height="4" rx="2" fill="#0dd4a0" />
+    <text class="label" x="674" y="143" fill="#0dd4a0" font-size="12" letter-spacing="1.2">STEP 04</text>
+    <text class="label" x="744" y="174" fill="#f8fafc" font-size="16" text-anchor="middle">
+      <tspan x="744">artifact-</tspan><tspan x="744" dy="23">generator</tspan>
+    </text>
+    <text class="text" x="744" y="232" fill="#94a3b8" font-size="14" text-anchor="middle">create artifacts</text>
+  </g>
+
+  <g>
+    <rect x="864" y="96" width="176" height="188" rx="16" fill="#0d1627" stroke="#1e293b" stroke-width="2" />
+    <rect x="882" y="114" width="36" height="4" rx="2" fill="#2d7ff9" />
+    <text class="label" x="882" y="143" fill="#2d7ff9" font-size="12" letter-spacing="1.2">STEP 05</text>
+    <text class="label" x="952" y="185" fill="#f8fafc" font-size="21" text-anchor="middle">garak</text>
+    <text class="text" x="952" y="232" fill="#94a3b8" font-size="14" text-anchor="middle">evaluate attacks</text>
+  </g>
+
+  <g>
+    <rect x="1072" y="96" width="176" height="188" rx="16" fill="#0d1627" stroke="#0dd4a0" stroke-width="2" />
+    <rect x="1090" y="114" width="36" height="4" rx="2" fill="#0dd4a0" />
+    <text class="label" x="1090" y="143" fill="#0dd4a0" font-size="12" letter-spacing="1.2">STEP 06</text>
+    <text class="label" x="1160" y="174" fill="#f8fafc" font-size="15" text-anchor="middle">
+      <tspan x="1160">guardrail-</tspan><tspan x="1160" dy="23">recommender</tspan>
+    </text>
+    <text class="text" x="1160" y="232" fill="#94a3b8" font-size="14" text-anchor="middle">recommend rails</text>
+  </g>
+
+</svg>
