@@ -669,11 +669,12 @@ section.stats > ul > li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 12px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 22px 12px;
+  padding: 34px 28px;
   text-align: center;
 }
 
@@ -681,8 +682,9 @@ section.stats > ul > li > p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
   margin: 0;
+  max-width: 92%;
 }
 
 section.stats > ul > li > p > strong {
@@ -692,8 +694,20 @@ section.stats > ul > li > p > strong {
 }
 
 section.stats > ul > li {
-  font-size: 0.7em;
+  font-size: 0.8em;
+  line-height: 1.55;
   color: var(--muted);
+}
+
+/* Denser padding for grids with three or more cards, which need the height. */
+section.stats > ul:has(> li:nth-child(3)) {
+  gap: 14px;
+}
+
+section.stats > ul:has(> li:nth-child(3)) > li {
+  font-size: 0.72em;
+  padding: 18px 20px;
+  gap: 8px;
 }
 
 /* Compact layout applies only to slides with the compact class. */
