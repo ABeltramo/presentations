@@ -31,7 +31,9 @@ jobs:
       # ABeltramo/abeltramo.github.io (events from the default
       # GITHUB_TOKEN do not trigger other workflows).
       - name: Notify abeltra.me
-        if: ${{ secrets.SITE_TRIGGER_TOKEN != '' }}
+        env:
+          TOKEN: ${{ secrets.SITE_TRIGGER_TOKEN }}
+        if: env.TOKEN != ''
         run: |
           curl -sf -X POST \
             -H "Accept: application/vnd.github+json" \
