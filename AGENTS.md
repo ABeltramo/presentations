@@ -47,9 +47,16 @@ npm run preview  # live server at http://localhost:8080
 ## CI
 
 The workflow in `.github/workflows/build.yml`:
-1. Runs `npm run build` (Marp converts all `src/**/*.md` → `dist/`)
-2. Copies non-Markdown assets from `src/` to `dist/`
-3. Auto-generates `dist/index.html` listing all built decks
-4. Deploys `dist/` to GitHub Pages
 
-No manual updates needed when adding or removing presentations.
+1. Runs `npm run build` (Marp converts all `src/**/*.md` → `dist/`) as a check
+2. Notifies `abeltramo.github.io` to rebuild via `repository_dispatch`
+
+`abeltra.me/presentations/` is served by the Hugo site, not by this repo's
+GitHub Pages. That site's workflow checks out this repo, builds the decks,
+and mounts them under `public/presentations/`.
+
+No manual updates needed when adding or removing presentations. The homepage
+timeline and the `/presentations/` listing regenerate on every site build.
+
+The notify step needs the `SITE_TRIGGER_TOKEN` secret in this repo: a PAT with
+`contents: write` on `ABeltramo/abeltramo.github.io`.

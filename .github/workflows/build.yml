@@ -1,4 +1,4 @@
-name: Build & Deploy
+name: Build & notify site
 
 on:
   push:
@@ -7,12 +7,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -22,137 +16,25 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
-      - run: npm ci
-
       - name: Build slides
-        run: npm run build
-
-      - name: Copy image assets
         run: |
-          find src -type f ! -name "*.md" | while read f; do
-            dest="dist/${f#src/}"
-            mkdir -p "$(dirname "$dest")"
-            cp "$f" "$dest"
-          done
+          npm ci
+          npm run build
 
-      - name: Generate index
+      # abeltra.me serves /presentations/ from its own Hugo deploy,
+      # which checks out this repo and rebuilds the decks itself.
+      # A push here only needs to tell that site to rebuild.
+      # SITE_TRIGGER_TOKEN: a PAT with "contents: write" on
+      # ABeltramo/abeltramo.github.io (events from the default
+      # GITHUB_TOKEN do not trigger other workflows).
+      - name: Notify abeltra.me
+        if: ${{ secrets.SITE_TRIGGER_TOKEN != '' }}
         run: |
-          python3 - <<'EOF'
-          import pathlib, html, re
-
-          dist = pathlib.Path("dist")
-          src  = pathlib.Path("src")
-
-          def read_date(html_path):
-              # Map dist/a/b/c/slides.html -> src/a/b/c/slides.md
-              rel = html_path.relative_to(dist)
-              md  = src / rel.with_suffix(".md")
-              if md.exists():
-                  text = md.read_text()
-                  m = re.search(r'^date:\s*(\S+)', text, re.MULTILINE)
-                  if m:
-                      return m.group(1)
-              else:
-                  # Standalone HTML (no .md source): read a <meta name="date"> tag
-                  m = re.search(r'<meta\s+name=["\']date["\']\s+content=["\']([^"\']+)["\']', html_path.read_text())
-                  if m:
-                      return m.group(1)
-              return ""
-
-          decks = list(dist.rglob("*.html"))
-          entries = []
-          for deck in decks:
-              rel   = deck.relative_to(dist)
-              parts = list(rel.parts)
-              label = " / ".join(parts[:-1]) or str(rel)
-              date  = read_date(deck)
-              entries.append((date, str(rel), label))
-
-          # Most recent first; entries without a date go last
-          entries.sort(key=lambda e: e[0] or "0000-00-00", reverse=True)
-
-          items = []
-          for date, href, label in entries:
-              date_span = f' <span class="date">{html.escape(date)}</span>' if date else ""
-              items.append(f'<li>{date_span} - <a href="{html.escape(href)}">{html.escape(label)}</a></li>')
-
-          page = f"""<!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Presentations</title>
-            <style>
-              body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                     background: #0d1117; color: #e6edf3; margin: 0; padding: 60px; }}
-              h1 {{ font-size: 2em; margin-bottom: 0.3em; }}
-              p  {{ color: #8b949e; margin-bottom: 2em; }}
-              ul {{ list-style: none; padding: 0; }}
-              li {{ margin-bottom: 12px; }}
-              a  {{ color: #58a6ff; text-decoration: none; font-size: 1.1em; }}
-              a:hover {{ text-decoration: underline; }}
-              .date {{ color: #8b949e; font-size: 0.85em; margin-left: 0.6em; }}
-            </style>
-          </head>
-          <body>
-            <h1>Presentations</h1>
-            <p>Built from Markdown with <a href="https://marp.app/">Marp</a>.</p>
-            <ul>
-          {"".join(items)}
-            </ul>
-          </body>
-          </html>"""
-
-          (dist / "index.html").write_text(page)
-          print(f"Index written with {len(items)} deck(s)")
-          EOF
-
-      - name: Create legacy URL redirects
-        run: |
-          python3 - <<'EOF'
-          from pathlib import Path
-
-          redirects = {
-              "rh/asago/tech-meeting-07-10/slides.html": "../tech-meeting-26-10-07/slides.html",
-              "rh/asago/tech-meeting-21-10/slides.html": "../tech-meeting-26-10-21/slides.html",
-              "rh/asago/tech-meeting-04-11/slides.html": "../tech-meeting-26-11-04/slides.html",
-          }
-
-          for old_path, target in redirects.items():
-              page = Path("dist") / old_path
-              page.parent.mkdir(parents=True, exist_ok=True)
-              page.write_text("\n".join([
-                  "<!doctype html>",
-                  '<html lang="en">',
-                  "<head>",
-                  '  <meta charset="utf-8">',
-                  f'  <meta http-equiv="refresh" content="0; url={target}">',
-                  f'  <link rel="canonical" href="{target}">',
-                  "  <title>Presentation moved</title>",
-                  "</head>",
-                  "<body>",
-                  f'  <p>This presentation moved. <a href="{target}">Open the updated presentation</a>.</p>',
-                  "</body>",
-                  "</html>",
-              ]) + "\n")
-              print(f"Redirect created: {old_path} -> {target}")
-          EOF
-
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
+          curl -sf -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.SITE_TRIGGER_TOKEN }}" \
+            https://api.github.com/repos/ABeltramo/abeltramo.github.io/dispatches \
+            -d '{"event_type":"presentations-updated"}'
