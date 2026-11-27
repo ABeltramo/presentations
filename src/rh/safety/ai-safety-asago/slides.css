@@ -1,0 +1,819 @@
+/* @theme ai-safety-asago-deck */
+
+/*
+ * Deck-specific styles for "Deploying AI safely", loaded with
+ * <link rel="stylesheet" href="./slides.css"> in the first slide.
+ * The shared look comes from themes/redhat.css.
+ *
+ * The @theme line above is required only because Marp CLI registers every CSS
+ * file next to a deck as a theme candidate and warns when the meta is missing.
+ * This file is never selected with `theme:`.
+ */
+
+/* ── Vertical rhythm: content slides centre their body ──────────────── */
+
+/* The theme scopes its rules with an ID-based selector, so overrides that
+   collide with theme properties need !important to win in the browser. */
+section:not(.title) {
+  justify-content: center !important;
+}
+
+/* ── Definition slide: pull quote and objectives ───────────────────── */
+
+section.definition .pullquote {
+  position: relative;
+  background:
+    linear-gradient(90deg, rgba(238, 0, 0, 0.14) 0%, rgba(238, 0, 0, 0) 55%),
+    var(--surface);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 22px 30px;
+  margin: 10px 0 26px;
+}
+
+section.definition .pullquote p {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 0.94em;
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+section.definition .pullquote em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--teal);
+}
+
+section.definition .objs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+section.definition .obj {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  border-radius: 8px;
+  padding: 18px 20px 20px;
+}
+
+section.definition .obj.warm {
+  border-top-color: var(--yellow);
+}
+
+section.definition .obj.alt {
+  border-top-color: var(--teal);
+}
+
+section.definition .obj h3 {
+  margin: 0 0 8px;
+  font-size: 0.68em;
+  line-height: 1.25;
+}
+
+section.definition .obj p {
+  margin: 0;
+  font-size: 0.55em;
+  line-height: 1.55;
+}
+
+section.definition .closing {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+  padding-left: 2px;
+  font-size: 0.62em;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+section.definition .closing .arrow {
+  color: var(--teal);
+  font-size: 1.1em;
+  line-height: 1.3;
+}
+
+/* ── asago introduction ────────────────────────────────────────────── */
+
+section.intro-asago {
+  justify-content: center !important;
+}
+
+section.intro-asago .logo {
+  display: block;
+  align-self: flex-start;
+  height: 140px !important;
+  width: auto !important;
+  max-height: none !important;
+  margin: 10px 0 28px !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+section.intro-asago .tagline {
+  font-family: var(--font);
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 10px;
+}
+
+section.intro-asago .sub {
+  max-width: 780px;
+  margin: 0;
+  font-size: 0.68em;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+section.intro-asago .meta {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+section.intro-asago .meta span {
+  font-family: var(--mono);
+  font-size: 0.44em;
+  color: var(--teal);
+  background: #051a1a;
+  border: 1px solid var(--teal);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+/* ── Fragmentation graph ───────────────────────────────────────────── */
+
+section.mess .mess {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 6px 0 4px;
+  border: none;
+  overflow: visible;
+}
+
+section.mess .caption {
+  margin-top: 4px;
+  font-size: 0.56em;
+}
+
+@media print {
+  section.mess svg * {
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+/* ── EvalHub hub diagram ───────────────────────────────────────────── */
+
+section.hub .split {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: 30px;
+  align-items: stretch;
+  margin-top: 8px;
+}
+
+section.hub .split > div > p {
+  font-size: 0.66em;
+  margin-bottom: 12px;
+}
+
+section.hub .split ul {
+  font-size: 0.6em;
+  line-height: 1.55;
+  margin-top: 0;
+}
+
+section.hub .split li {
+  margin-bottom: 0.6em;
+}
+
+section.hub .hub {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+section.hub .hub-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+section.hub .chip {
+  font-family: var(--mono);
+  font-size: 0.44em;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+
+section.hub .arrow {
+  color: var(--teal);
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+section.hub .core {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  background: #051a1a;
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  padding: 18px 10px;
+  font-family: var(--font);
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--teal);
+}
+
+section.hub .core span {
+  display: block;
+  font-family: var(--body);
+  font-size: 0.42em;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+section.hub .out {
+  font-family: var(--mono);
+  font-size: 0.44em;
+  color: var(--teal);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 9px;
+}
+
+/* ── Why the deck exists: six reasons ──────────────────────────────── */
+
+section.why .reasons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 10px 0 22px;
+}
+
+section.why .reason {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  border-radius: 8px;
+  padding: 20px 20px 18px;
+}
+
+section.why .reason h3 {
+  margin: 0 0 10px;
+  font-size: 0.74em;
+  line-height: 1.25;
+}
+
+section.why .reason p {
+  margin: 0;
+  font-size: 0.58em;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ── Metric tiles ───────────────────────────────────────────────────── */
+
+section.stats .metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 4px 0 14px;
+}
+
+section.stats .metric {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+section.stats .metric-label {
+  display: block;
+  font-family: var(--font);
+  font-size: 0.4em;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 4px;
+}
+
+section.stats .metric-value {
+  display: block;
+  font-family: var(--font);
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+section.stats .metric-value.red { color: var(--red-hi); }
+section.stats .metric-value.teal { color: var(--teal); }
+
+/* ── Result slides: headline left, report artifact right ────────────── */
+
+section.result .split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 30px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+section.result .asr {
+  display: block;
+  font-family: var(--font);
+  font-size: 3.1em;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+section.result .asr.red  { color: var(--red-hi); }
+section.result .asr.teal { color: var(--teal); }
+
+section.result .asr-label {
+  display: block;
+  font-family: var(--font);
+  font-size: 0.46em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 6px 0 20px;
+}
+
+section.result .counts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+section.result .count {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+section.result .count-label {
+  display: block;
+  font-size: 0.42em;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 2px;
+}
+
+section.result .count strong {
+  font-family: var(--font);
+  font-size: 0.92em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+section.result .count strong.red  { color: var(--red-hi); }
+section.result .count strong.teal { color: var(--teal); }
+
+section.result p {
+  font-size: 0.62em;
+}
+
+section.result .evidence img {
+  max-height: 300px !important;
+  margin: 0 auto !important;
+}
+
+section.result .evidence .caption {
+  margin-top: 6px;
+}
+
+/* ── Six-cell grid ──────────────────────────────────────────────────── */
+
+section.grid6 .grid,
+section .grid.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+section.grid6 .cell,
+section .grid .cell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+
+section .grid .cell-num {
+  display: block;
+  font-family: var(--font);
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+
+section .grid h3 {
+  margin: 0 0 8px;
+  font-size: 0.68em;
+}
+
+section .grid p {
+  margin: 0;
+  font-size: 0.56em;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ── Comparison bars ────────────────────────────────────────────────── */
+
+section.compare .split {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 34px;
+  align-items: end;
+  margin-top: 6px;
+}
+
+section.compare .bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 10px;
+}
+
+section.compare .chart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+section.compare .chart-value {
+  font-family: var(--font);
+  font-size: 1.05em;
+  font-weight: 700;
+}
+
+section.compare .chart-value.red  { color: var(--red-hi); }
+section.compare .chart-value.teal { color: var(--teal); }
+
+section.compare .bar-slot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+
+section.compare .bar {
+  width: 74px;
+  min-height: 8px;
+  border-radius: 5px 5px 0 0;
+}
+
+section.compare .bar.red    { background: var(--red); }
+section.compare .bar.yellow { background: var(--yellow); }
+section.compare .bar.teal   { background: var(--teal); }
+
+section.compare .chart-label {
+  font-size: 0.5em;
+  color: var(--dim);
+  text-align: center;
+  line-height: 1.35;
+}
+
+section.compare .chart-side .caption {
+  margin-top: 16px;
+  text-align: left;
+}
+
+section.compare table {
+  margin-top: 0;
+  font-size: 0.6em;
+}
+
+section.compare ul {
+  font-size: 0.6em;
+  line-height: 1.7;
+}
+
+/* ── Big message ────────────────────────────────────────────────────── */
+
+section .big-message {
+  font-family: var(--font);
+  font-size: 1.35em;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  border-left: 4px solid var(--red);
+  padding-left: 20px;
+}
+
+/* ── Attack strategy ladder ─────────────────────────────────────────── */
+
+section.strategies img {
+  max-height: 458px !important;
+  max-width: 100% !important;
+  width: auto !important;
+  margin: 6px auto 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+section.strategies .caption {
+  margin-top: 16px;
+  font-size: 0.6em;
+}
+
+/* ── SDG variation slide ────────────────────────────────────────────── */
+
+section.sdg .split {
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  gap: 34px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+section.sdg .diagram img {
+  width: 100% !important;
+  max-height: 330px !important;
+  object-fit: contain;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+section.sdg .params {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+section.sdg .param {
+  font-size: 0.56em;
+  line-height: 1.4;
+  color: var(--muted);
+  border-left: 2px solid var(--border);
+  padding-left: 12px;
+}
+
+section.sdg .param-name {
+  display: block;
+  font-family: var(--font);
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+/* ── Variant chips ──────────────────────────────────────────────────── */
+
+section .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 16px;
+}
+
+section .chip {
+  font-family: var(--mono);
+  font-size: 0.5em;
+  color: var(--teal);
+  background: #051a1a;
+  border: 1px solid var(--teal);
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+section .chip.muted {
+  color: var(--dim);
+  border-color: var(--border);
+  background: var(--surface-2);
+}
+
+/* ── Manual timeline ────────────────────────────────────────────────── */
+
+section .stages {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 14px 0 16px;
+}
+
+section .stages .stage {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  border-radius: 6px;
+  padding: 16px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+section .stages .stage-num {
+  font-family: var(--font);
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--red);
+}
+
+section .stages .stage-name {
+  font-family: var(--font);
+  font-size: 0.66em;
+  font-weight: 600;
+  color: var(--text);
+}
+
+section .stages .stage p {
+  margin: 0;
+  font-size: 0.52em;
+  line-height: 1.5;
+}
+
+section .stages .stage-cost {
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 0.5em;
+  color: var(--yellow);
+}
+
+/* ── asago pipeline ─────────────────────────────────────────────────── */
+
+section .pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  column-gap: 6px;
+  margin: 14px 0 24px;
+}
+
+section .pipeline .pipe-stage {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--teal);
+  border-radius: 6px;
+  padding: 18px 14px;
+}
+
+section .pipeline .pipe-name {
+  display: block;
+  font-family: var(--font);
+  font-size: 0.62em;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+section .pipeline .pipe-stage p {
+  margin: 0;
+  font-size: 0.5em;
+  line-height: 1.5;
+}
+
+section .pipeline .pipe-arrow {
+  align-self: center;
+  color: var(--teal);
+  font-size: 0.9em;
+}
+
+/* ── Collaboration logo grid ────────────────────────────────────────── */
+
+section.logos p {
+  font-size: 0.66em;
+  max-width: 900px;
+}
+
+section.logos .logos-footer {
+  font-size: 0.58em;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+section.logos .org-eyebrow {
+  font-family: var(--font);
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin: 12px 0 8px;
+}
+
+section.logos .logo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+section.logos .logo-tile {
+  width: 202px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 10px 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+section.logos .logo-tile.wide {
+  width: 330px;
+}
+
+section.logos .logo-box {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+section.logos .logo-box img {
+  max-width: 168px !important;
+  max-height: 54px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+section.logos .logo-tile.wide .logo-box img {
+  max-width: 296px !important;
+  max-height: 56px !important;
+}
+
+section.logos .logo-name {
+  font-size: 0.42em;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--muted);
+  min-height: 1.9em;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Demo card ──────────────────────────────────────────────────────── */
+
+section.demo .demo-card {
+  background: var(--surface);
+  border: 1px solid var(--teal);
+  border-left: 4px solid var(--teal);
+  border-radius: 8px;
+  padding: 20px 26px;
+  margin: 10px 0 26px;
+}
+
+section.demo .demo-card h3 {
+  margin: 0 0 8px;
+  font-size: 1em;
+}
+
+section.demo .demo-card a {
+  font-family: var(--mono);
+  font-size: 0.95em;
+  color: var(--teal);
+}
+
+section.demo .demo-card p {
+  margin: 0;
+  font-size: 0.62em;
+}
